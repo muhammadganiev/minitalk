@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: muganiev <muganiev@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/18 15:40:20 by muganiev          #+#    #+#             */
-/*   Updated: 2022/09/18 15:40:21 by muganiev         ###   ########.fr       */
+/*   Created: 2022/09/18 15:38:43 by muganiev          #+#    #+#             */
+/*   Updated: 2022/09/18 15:38:48 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include "../includes/minitalk.h"
+#include "../includes/minitalk_bonus.h"
 
 static void	handle_binary_to_str(int sig, siginfo_t *info, void *ptr)
 {
@@ -19,7 +18,6 @@ static void	handle_binary_to_str(int sig, siginfo_t *info, void *ptr)
 	static char	num_of_bits;
 
 	(void) ptr;
-	(void) info;
 	if (sig == SIGUSR1)
 		c |= 1;
 	if (sig == SIGUSR2)
@@ -30,6 +28,7 @@ static void	handle_binary_to_str(int sig, siginfo_t *info, void *ptr)
 		ft_printf("%c", c);
 		num_of_bits = 0;
 		c = 0;
+		kill(info->si_pid, SIGUSR1);
 	}
 	c <<= 1;
 }
