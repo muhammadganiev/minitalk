@@ -3,73 +3,62 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flim <flim@student.42abudhabi.ae>          +#+  +:+       +#+        */
+/*   By: muganiev <gf.black.tv@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/14 17:32:10 by flim              #+#    #+#             */
-/*   Updated: 2022/02/28 17:49:42 by flim             ###   ########.fr       */
+/*   Created: 2022/05/26 15:13:40 by muganiev          #+#    #+#             */
+/*   Updated: 2022/05/31 18:02:07 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	n_len(int n)
+static int	ft_abs(int nbr)
 {
-	int	i;
-
-	i = 1;
-	if (n < 0)
-	{
-		n *= -1;
-		i++;
-	}
-	while (n > 9)
-	{
-		n /= 10;
-		i++;
-	}
-	return (i);
+	if (nbr < 0)
+		return (-nbr);
+	else
+		return (nbr);
 }
 
-static int	find_zero(int len)
+static void
+	ft_strrev(char *str)
 {
-	int	i;
+	size_t	length;
+	size_t	i;
+	char	tmp;
 
-	i = 1;
-	if (len == 1)
-		return (1);
-	while (len > 1)
-	{
-		i *= 10;
-		len--;
-	}
-	return (i);
-}
-
-char	*ft_itoa(int n)
-{
-	int		i;
-	int		len;
-	int		len2;
-	char	*result;
-
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
-	if (n > 2147483647 || n < -2147483648)
-		return (NULL);
+	length = ft_strlen(str);
 	i = 0;
-	len = n_len(n);
-	len2 = len;
-	result = (char *)malloc(sizeof(char) * (len + 1));
-	if (!result)
-		return (NULL);
-	if (n < 0)
+	while (i < length / 2)
 	{
-		n *= -1;
-		result[i++] = '-';
-		len--;
+		tmp = str[i];
+		str[i] = str[length - i - 1];
+		str[length - i - 1] = tmp;
+		i++;
 	}
-	while (i < len2)
-		result[i++] = ((n / find_zero(len--)) % 10) + 48;
-	result[i] = '\0';
-	return (result);
+}
+
+char
+	*ft_itoa(int n)
+{
+	char	*str;
+	int		is_neg;
+	size_t	length;
+
+	is_neg = (n < 0);
+	str = ft_calloc(11 + is_neg, sizeof(*str));
+	if (!str)
+		return (NULL);
+	if (n == 0)
+		str[0] = '0';
+	length = 0;
+	while (n != 0)
+	{
+		str[length++] = '0' + ft_abs(n % 10);
+		n = (n / 10);
+	}
+	if (is_neg)
+		str[length] = '-';
+	ft_strrev(str);
+	return (str);
 }

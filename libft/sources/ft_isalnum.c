@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flim <flim@student.42abudhabi.ae>          +#+  +:+       +#+        */
+/*   By: muganiev <gf.black.tv@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/05 15:52:48 by flim              #+#    #+#             */
-/*   Updated: 2022/01/05 19:31:38 by flim             ###   ########.fr       */
+/*   Created: 2022/05/16 14:40:02 by muganiev          #+#    #+#             */
+/*   Updated: 2022/05/31 19:24:58 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalnum(int alnum)
+#include "libft.h"
+
+int	ft_isalnum(int c)
 {
-	if ((alnum > 47 && alnum < 58) || (alnum > 64 && alnum < 91)
-		|| (alnum > 96 && alnum < 123))
-		return (1);
-	return (0);
+	return (ft_isdigit(c) || ft_isalpha(c));
 }

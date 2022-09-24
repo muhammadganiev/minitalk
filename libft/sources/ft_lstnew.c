@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flim <flim@student.42abudhabi.ae>          +#+  +:+       +#+        */
+/*   By: muganiev <gf.black.tv@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/14 17:44:42 by flim              #+#    #+#             */
-/*   Updated: 2022/02/28 17:49:33 by flim             ###   ########.fr       */
+/*   Created: 2022/05/31 17:55:27 by muganiev          #+#    #+#             */
+/*   Updated: 2022/06/02 20:29:06 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 t_list	*ft_lstnew(void *content)
 {
-	t_list	*tmp;
+	t_list	*rtn;
 
-	tmp = (t_list *)malloc(sizeof(t_list));
-	if (!tmp)
-		return (0);
-	tmp->content = content;
-	tmp->next = NULL;
-	return (tmp);
+	rtn = (t_list *)malloc(sizeof(t_list));
+	if (!rtn)
+		return (rtn = NULL);
+	rtn->next = NULL;
+	rtn->content = content;
+	return (rtn);
 }

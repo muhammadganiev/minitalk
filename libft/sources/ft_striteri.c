@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flim <flim@student.42abudhabi.ae>          +#+  +:+       +#+        */
+/*   By: muganiev <gf.black.tv@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/15 16:38:28 by flim              #+#    #+#             */
-/*   Updated: 2022/02/28 17:22:22 by flim             ###   ########.fr       */
+/*   Created: 2022/05/26 15:14:08 by muganiev          #+#    #+#             */
+/*   Updated: 2022/05/31 18:05:15 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	int	n;
+	unsigned int	i;
 
 	if (!s || !f)
 		return ;
-	n = 0;
-	while (s[n])
+	i = 0;
+	while (s[i])
 	{
-		(f)(n, &s[n]);
-		n++;
+		f(i, s + i);
+		i++;
 	}
 }

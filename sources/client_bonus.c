@@ -6,10 +6,9 @@
 /*   By: muganiev <muganiev@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:40:10 by muganiev          #+#    #+#             */
-/*   Updated: 2022/09/18 15:40:11 by muganiev         ###   ########.fr       */
+/*   Updated: 2022/09/24 14:37:39 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../includes/minitalk_bonus.h"
 

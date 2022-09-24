@@ -5,11 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: muganiev <muganiev@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/18 15:40:05 by muganiev          #+#    #+#             */
-/*   Updated: 2022/09/18 15:40:06 by muganiev         ###   ########.fr       */
+/*   Created: 2022/09/13 17:45:18 by muganiev          #+#    #+#             */
+/*   Updated: 2022/09/20 13:21:13 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../includes/minitalk.h"
 
@@ -23,7 +22,7 @@ static void	are_args_valid(int pid, char *str)
 	}
 	if (!*str)
 	{
-		ft_printf(BRIGHT_RED "ERROR: string is empty"
+		ft_printf(BRIGHT_RED "ERROR: there is nothing to send"
 			RESET);
 		exit(EXIT_FAILURE);
 	}

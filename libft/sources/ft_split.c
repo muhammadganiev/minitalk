@@ -3,85 +3,69 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flim <flim@student.42abudhabi.ae>          +#+  +:+       +#+        */
+/*   By: muganiev <gf.black.tv@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/14 16:55:29 by flim              #+#    #+#             */
-/*   Updated: 2022/02/28 17:22:09 by flim             ###   ########.fr       */
+/*   Created: 2022/05/26 15:14:04 by muganiev          #+#    #+#             */
+/*   Updated: 2022/05/31 17:58:36 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_is_delimeter(char c, char target)
+static int	count_words(char const *s, char c)
 {
-	if (c == target)
-		return (1);
-	return (0);
-}
+	int	words;
+	int	i;
 
-static	char	*my_strdup(char *s, char target)
-{
-	char	*new_word;
-	int		i;
-
+	words = 0;
 	i = 0;
-	while (s[i] && !ft_is_delimeter(s[i], target))
-		i++;
-	new_word = malloc(sizeof(char) * (i + 1));
-	if (!new_word)
-		return (NULL);
-	i = 0;
-	while (s[i] && !ft_is_delimeter(s[i], target))
+	if (c < 0)
+		return (0);
+	if (s[0] != c)
+		words++;
+	while (s[i] != '\0' && s[i + 1] != '\0')
 	{
-		new_word[i] = s[i];
+		if (s[i] == c && s[i + 1] != c)
+			words++;
 		i++;
 	}
-	new_word[i] = '\0';
-	return (new_word);
+	return (words);
 }
 
-static int	ft_total_words(char *s, char target)
+static int	word_len(const char *s, char c, int start)
 {
-	int	total_words;
+	int	i;
 
-	total_words = 0;
-	while (*s)
-	{
-		while (*s && ft_is_delimeter(*s, target))
-			s++;
-		if (*s && !ft_is_delimeter(*s, target))
-		{
-			while (*s && !ft_is_delimeter(*s, target))
-				s++;
-			total_words++;
-		}
-	}
-	return (total_words);
+	i = 0;
+	while (s[start + i] != c && s[start + i] != '\0')
+		i++;
+	return (i);
 }
 
 char	**ft_split(char const *s, char c)
 {
+	char	**ptr;
 	int		i;
-	char	**arr_of_s;
+	int		start;
 
 	if (!s)
 		return (NULL);
-	i = 0;
-	arr_of_s = malloc(sizeof(char *) * (ft_total_words((char *)s, c) + 1));
-	if (!arr_of_s)
+	ptr = (char **)malloc(sizeof(char *) * (count_words(s, c) + 1));
+	if (!ptr)
 		return (NULL);
-	while (*s)
+	i = 0;
+	start = 0;
+	while (s[i] != '\0')
 	{
-		while (*s && ft_is_delimeter(*s, c))
-			s++;
-		if (*s && !ft_is_delimeter(*s, c))
+		if (s[i] != c)
 		{
-			arr_of_s[i] = my_strdup((char *)s, c);
-			i++;
-			while (*s && !ft_is_delimeter(*s, c))
-				s++;
+			ptr[start] = ft_substr(s, i, word_len(s, c, i));
+			i = i + word_len(s, c, i);
+			start++;
 		}
+		else
+			i++;
 	}
-	arr_of_s[i] = 0;
-	return (arr_of_s);
+	ptr[start] = NULL;
+	return (ptr);
 }

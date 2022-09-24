@@ -6,10 +6,9 @@
 /*   By: muganiev <muganiev@student.42abudhabi.a    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 15:41:03 by muganiev          #+#    #+#             */
-/*   Updated: 2022/09/18 15:41:04 by muganiev         ###   ########.fr       */
+/*   Updated: 2022/09/24 14:36:10 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
